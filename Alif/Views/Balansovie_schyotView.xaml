@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Alif.Views.Balansovie_schyotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Alif.Views"
+             xmlns:c="clr-namespace:Alif.ViewModels"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        
+        
+        <ResourceDictionary>
+            <c:ConverterActive x:Key="converter"/>
+            <ContextMenu
+                x:Key="RowMenu"
+                Name="uiContextMenu"
+                DataContext="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=DataContext}"
+                ItemsSource="{Binding ContextMenuItems}">
+                <ContextMenu.ItemTemplate>
+                    <DataTemplate DataType="MenuItem">
+                        <MenuItem Command="{Binding Command}" Header="{Binding Title}" />
+                    </DataTemplate>
+                </ContextMenu.ItemTemplate>
+            </ContextMenu>
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
+        
+    <Grid>
+        <DataGrid Grid.Column="0" Margin="5" x:Name="BalanceDataGrid" ItemsSource="{Binding Bal, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Счет 2 значный цифровой" Binding="{Binding BallnceAccount, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Название буквенный" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Вид" Binding="{Binding Active, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource converter}}"/>
+            </DataGrid.Columns>
+     
+            
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Setter Property="AlternatingRowBackground" Value="#F2F2F2" />
+                </Style>
+            </DataGrid.Style>
+
+
+
+        <DataGrid.RowStyle>
+           <Style TargetType="DataGridRow">
+             <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+           </Style>
+        </DataGrid.RowStyle>
+
+
+
+
+
+
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit" Command="{Binding EditBtn}"/>
+                    <MenuItem Header="Add" Command="{Binding EditBtn}">
+                    </MenuItem>
+                    <MenuItem Header="Delete" Command="{Binding DeleteBtn}"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </Grid>
+    
+</UserControl>

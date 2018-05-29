@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alif.ViewModels"
+        xmlns:local1="clr-namespace:Alif.Views" x:Name="ValidateUser1" x:Class="Alif.Views.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow"  HorizontalAlignment="Center" IsEnabled="True"  HorizontalContentAlignment="Center" VerticalAlignment="Center" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0">
+            <TreeView x:Name="treeView1" ItemsSource="{Binding MenuItems}" SelectedItemChanged="treeView1_SelectedItemChanged">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Childs}">
+                        <TextBlock Text="{Binding Title}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" />
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </DockPanel>
+        <!--<DockPanel Grid.Column="1">
+            <TextBlock Text="{Binding CurrentUser.FullName}"/>
+        </DockPanel>-->
+        <ContentControl Grid.Column="2" Content="{Binding Path=CurrentPage}">
+
+        </ContentControl>
+    </Grid>
+</Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="Alif.DialogWindow.BalanceAddDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alif.DialogWindow"
+        xmlns:c="clr-namespace:Alif.ViewModels"
+        mc:Ignorable="d"
+        Title="BalanceAddDialog" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+            <Label>Счет 2 значный цифровой</Label>
+            <TextBox Text="{Binding AddBalance.BallnceAccount, Mode=TwoWay}" Name="BallnceAccount"/>
+            <Label>Название буквенный</Label>
+            <TextBox Text="{Binding AddBalance.Name, Mode=TwoWay}" Name="Name"/>
+            <Label>Актив</Label>
+            <CheckBox IsChecked="{Binding AddBalance.Active, Mode=TwoWay}" Name="Active"/>
+            <Button Command="{Binding Cancel}" Content="Отмена"/>
+            <Button Command="{Binding Save}" Content="Сохранить"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
